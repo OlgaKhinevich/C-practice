@@ -29,7 +29,16 @@ public:
 
 	Linear(int _a, int _b):Solution(_a, _b) {}
 
-	void solve_linear_equation(const int a, int b)
+	void set_values()
+	{
+		cout << "Введите коэффициент а: ";
+		cin >> a;
+		cout << "Введите коэффициент b: ";
+		cin >> b;
+		cout << endl;
+	}
+
+	void solve_linear_equation()
 	{
 		if (a == 0 && b != 0)
 		{
@@ -44,7 +53,7 @@ public:
 			cout << "Корень: 0" << endl;
 		}
 		else {
-			int x = -b / a;
+			auto x = -b / a;
 			cout << "Корень: " << x << endl;
 		}
 	}
@@ -57,14 +66,23 @@ private:
 public:
 	Square() {}
 
-	Square(int _a, int _b, int _c, int _d):Solution(_a, _b)
+	Square(int _a, int _b, int _c):Solution(_a, _b)
 	{
 		c = _c;
-		d = _d;
 	}
 
+	void set_values()
+	{
+		cout << "Введите коэффициент а: ";
+		cin >> a;
+		cout << "Введите коэффициент b: ";
+		cin >> b;
+		cout << "Введите коэффициент c: ";
+		cin >> c;
+		cout << endl;
+	}
 
-	void solve_square_equation(int a, int b, int c)
+	void solve_square_equation()
 	{
 		d = b * b - 4 * a*c;
 		if (d > 0) 
@@ -98,12 +116,19 @@ public:
 		linear = make_unique<Linear>();
 	}
 
+	void input()
+	{
+		linear->set_values();
+		square->set_values();
+
+	}
+
 	void output()
 	{
 		cout << "Решение линейного уравнения:" << endl;
-		linear->solve_linear_equation(1,2);
+		linear->solve_linear_equation();
 		cout << "Решение квадратного уравнения:" << endl;
-		square->solve_square_equation(-3,4,5);
+		square->solve_square_equation();
 	}
 };
 
@@ -113,5 +138,6 @@ int main()
 	SetConsoleOutputCP(1251);
 	SetConsoleCP(1251);
 	Series* first_series = new Series();
+	first_series->input();
 	first_series->output();
 }
